@@ -1,0 +1,12 @@
+{ 
+ 
+  "name"  : "Obeth",
+  "salary" : 9000,
+  "experience" : 10,
+  "age" : "Obeth",
+  "field" : "Developement",
+  "company": "zoho",
+  "email" : "obethsamuel@zoho.com",
+  "phone_number" : 908025591
+  
+ }

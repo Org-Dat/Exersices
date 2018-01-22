@@ -1,0 +1,51 @@
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <type>object</type>
+    <title>Employee Details</title>
+    <description>validate the employee details it is correct or wrong</description>
+    <properties>
+         <name>
+            <type>String</type>
+            <minLength>3</minLength>
+            <maxLength>255</maxLength>
+         </name>
+         <salary>
+             <type>integer</type>
+             <minimum>2000</minimum>
+             <maximum>20000000</maximum>
+         </salary>
+         <age>
+             <type>integer</type>
+             <minimum>18</minimum>
+             <maximum>58</maximum>           
+         </age>
+         <experience>
+             <type>integer</type>
+             <minimum>0</minimum>
+             <maximum>39</maximum>           
+         </experience>
+         <field>       
+            <enum>Developement</enum>
+            <enum>Testing</enum>
+            <enum>Tech-Support</enum>
+            <enum>Designer</enum> 
+         </field>
+         <company>
+  			<type>string</type>
+  			<pattern>^zoho$</pattern>
+		</company>
+		<phone_number>
+  			<type>integer</type>
+  			<pattern>^[6-9][0-9]{9 , 20}$</pattern>
+		</phone_number>
+		<email>
+  			<type>String</type>
+  			<format>email</format>
+		</email>		
+    </properties>
+    
+    <required>name</required>
+	<required>salary</required>
+	<required>age</required>
+	<required>field</required>
+	<required>company</required>
+	<required>email</required>

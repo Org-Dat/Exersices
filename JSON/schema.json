@@ -1,0 +1,46 @@
+{
+    "description": "validate the employee details it is correct or wrong",
+    "type": "object",
+    "title": "Employee Details",
+    "properties": {
+        "field": {"enum": [
+            "Developement",
+            "Testing",
+            "Tech-Support",
+            "Designer"
+        ]},
+        "name": {
+            "minLength": 3,
+            "type": "string",
+            "maxLength": 255
+        },
+        "company": {
+            "pattern": "^zoho$",
+            "type": "string"
+        },
+        "phone_number": {
+            "pattern": "^[6-9][0-9]{9 , 20}$",
+            "type": "integer"
+        },
+        "salary": {
+            "maximum": 20000000,
+            "type": "integer",
+            "minimum": 2000
+        },
+        "experience": {
+            "maximum": 39,
+            "type": "integer",
+            "minimum": 0
+        },
+        "age": {
+            "maximum": 58,
+            "type": "integer",
+            "minimum": 18
+        },
+        "email": {
+            "format": "email",
+            "type": "string"
+        }
+    },
+    "required": [        "name",        "salary",        "age",        "field",        "company",        "email"]
+}
