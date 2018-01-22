@@ -3,7 +3,12 @@
     "type": "object",
     "title": "Employee Details",
     "properties": {
-        
+        "field": {"enum": [
+            "Developement",
+            "Testing",
+            "Tech-Support",
+            "Designer"
+        ]},
         "name": {
             "minLength": 3,
             "type": "String",
@@ -15,16 +20,16 @@
         },
         "phone_number": {
             "pattern": "^[6-9][0-9]{9 , 20}$",
-            "type": "array"
+            "type": "integer"
         },
         "salary": {
             "maximum": 20000000,
-            "type": "object",
+            "type": "integer",
             "minimum": 2000
         },
         "experience": {
             "maximum": 39,
-            "type": "boolean",
+            "type": "integer",
             "minimum": 0
         },
         "age": {
@@ -33,7 +38,8 @@
             "minimum": 18
         },
         "email": {
-            "format": "email"
+            "format": "email",
+            "type": "String"
         }
     },
     "required": [

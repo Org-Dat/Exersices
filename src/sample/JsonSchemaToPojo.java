@@ -1,6 +1,6 @@
 //$Id$
-package jsonschema;
-   
+package sample;
+
 import java.io.*;
 import java.net.URL;
 
@@ -20,7 +20,7 @@ public class JsonSchemaToPojo {
     	JsonSchemaToPojo pojo =  new JsonSchemaToPojo();
     	
     	String fileName = "Employee";
-    	String pathName = "/home/obeth-zutk123/eclipse/ZIDE/Exercise/Java";
+    	String pathName = "/home/obeth-zutk123/eclipse/ZIDE/Exercise/POJOFiles";
     	String packageName = "java.pojofile";
     	
     	

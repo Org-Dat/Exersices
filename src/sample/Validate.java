@@ -1,4 +1,4 @@
-package jsonschema;
+package sample;
 
 
 import java.io.IOException;

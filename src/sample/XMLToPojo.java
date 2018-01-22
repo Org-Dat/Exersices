@@ -1,4 +1,5 @@
-package jsonschema;
+//$Id$
+package sample;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +14,7 @@ public class XMLToPojo {
 	        try {
 	        	
 	            String fileName = "Employee";
-	            String filePath = "/home/obeth-zutk123/eclipse/ZIDE/Exercise/Java";
+	            String filePath = "/home/obeth-zutk123/eclipse/ZIDE/Exercise/POJOFiles";
 	 
 	        	String packageName = "java.pojofile";
 	        	
@@ -22,7 +23,7 @@ public class XMLToPojo {
 	        	String xmlFileName = "schema";
 	        	
 	        	
-	        	String schemaFileName = "schema";
+	        	String schemaFileName = "xmlschema";
 	            String schemaPathName = "/home/obeth-zutk123/eclipse/ZIDE/Exercise/JSON";
 	        	
 	        	FileResource fr = new FileResource(xmlPath+"/"+xmlFileName+".xml");
