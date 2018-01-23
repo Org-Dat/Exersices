@@ -14,6 +14,8 @@ import org.jsonschema2pojo.rules.RuleFactory;
 import edu.duke.FileResource;
 import com.sun.codemodel.JCodeModel;
 
+
+
 public class JsonSchemaToPojo {
 
     public static void main(String[] args){

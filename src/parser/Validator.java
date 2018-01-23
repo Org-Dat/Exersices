@@ -1,5 +1,5 @@
 //$Id$
-package jsonschema;
+package parser;
 
 import java.util.*;
 import org.json.*;

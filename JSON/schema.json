@@ -6,7 +6,7 @@
         
         "name": {
             "minLength": 3,
-            "type": "String",
+            "type": "string",
             "maxLength": 255
         },
         "company": {
@@ -19,7 +19,7 @@
         },
         "salary": {
             "maximum": 20000000,
-            "type": "object",
+            "type": "integer",
             "minimum": 2000
         },
         "experience": {

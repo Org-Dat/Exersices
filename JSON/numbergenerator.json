@@ -1,0 +1,89 @@
+{
+   "version" : "1.0.0",
+   "title" : "Number Generator API",
+   "description" : "This API generate some count of type of  numbers",
+   "protocol" : "http",
+   "host" : "number.geneter",
+   "basePath" : "/api",
+    "paths"  : {
+	  "/randomNumbers" : {
+	       "get" : { 
+	           "summary"  : "Generate Some Count Of Random Number",
+		   "description" : "return list of random numbers" ,
+                   "parameters" : [ 
+                                     { 
+                                        "name" : "count",
+					"in" : "query",
+					"type" : "integer",
+					"description" : "number of random numbers",
+					"required" : true
+                                     } , 
+                                     {
+  					"name" : "minimum",
+					"in" : "query",
+  					"type" : "integer",
+					"description" : "minimum random number"
+                                     } , 
+				     {
+					"name" : "maximum" ,
+					"in" : "query" ,
+					"type" : "integer" ,
+					"description" : "maximum random number"
+			     }
+                                  ]
+                    "response" : {  
+                        "200" : {
+                            "$ref" : "#/responses/200",
+                            "description" : "Random Number Generate Successfully !..."
+                        } ,
+                       "400" : {
+                            "$ref" : "#/responses/400",
+                            "description" :{ 
+                                   "enum" :  ["Count is Not a number", "minimum number is Infinity" , "minimum number is not a number" , "maximum number is not a number"] 
+                             }
+                        }
+  		      "500" : {  
+                           "$ref" : "#/responses/500"
+                        }
+                    } 
+              }
+
+             "post" : {
+                 "$ref" : "#/responses/invalidMethod",
+                 "description"  : "Post method is not allow in this API"
+             }
+
+          } 	   
+		   
+   }
+
+  "responses" : { 
+             "200"  : {  
+                  "status" : "success" ,
+                  "numbers"  : { 
+                       "type" : "array" ,
+                       "items" : {
+                            "type" : "integer"
+                       }
+                   }
+              }
+         
+            "400" : {
+                 "status" : "Failed" ,
+                 "numbers" : {
+                      "type" : "array" ,
+                      "maxItems" : 0
+                  }
+             }
+
+           "500" : {
+                "status" : "Failed",
+                "description" : "An unexpected error occured."
+            }
+
+          "invalidMethod" : {
+	      "statusCode" : "405",
+              "summary" : "Method Not Allowed"
+          }
+    }
+}
