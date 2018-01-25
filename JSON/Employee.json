@@ -1,0 +1,356 @@
+{
+
+    "version": "1.0.0",
+    "title": "Employee Management",
+    "description": "This API used to manage Employee details",
+    "protocol": "http",
+    "host": "number.geneter",
+    "basePath": "/api/{company_name}/empoyee",
+    "apis": [{
+            "path": "/add",
+            "operations": [{
+                    "method": "POST",
+                    "summary": "Add new Employee",
+                    "description": "Add new Employee Detail in database",
+                    "parameters": [{
+                        "name": "employee_detail",
+                        "in": "body",
+                        "required": true,
+                        "type"  : "object" ,
+                        "description": "The Employee Detail Object",
+                        "$ref": "#/Employee"
+                    }],
+                    "responseMessages": [{
+                            "$ref": "#/responses/200",
+                            "description": "Employee Detail successfully add to  Employee List"
+                        },
+
+                        {
+                            "$ref": "#/responses/400",
+                            "description": {
+                                "enum": ["Employee Name is incorrect", "Employee Phone Number is incorrect", "Experience value is too long", "Experience value is too small", "Employee DOB is incorrect", "Employee email is incorrect", "Employee salaery is too small"]
+                            }
+                        },
+                        
+                        {
+                            "$ref" : "#/response/403"
+                        }, 
+                        
+                        {
+                            "$ref": "#/responses/404",
+                            "description": {
+                                "enum": ["Company name not found ", "{properties} is must be give"]
+                            }
+                        },
+
+                        {
+                            "$ref": "#/response/500"
+                        }
+                    ]
+                },
+
+                {
+                    "method": ["GET", "DELETE", "PUT", "PATCH"],
+                    "responseMessages": [{
+                        "$ref": "#/responses/405"
+                    }]
+                }
+            ]
+        },
+
+        {
+            "path": "/get",
+            "operations": [{
+                    "method": "GET",
+                    "summary": "Get  Employee Detail",
+                    "description": "return Employee Detail object",
+                    "parameters": [{
+                        "name": "email",
+                        "in": "query",
+                        "description": "return one employee detail",
+                        "type": "string",
+                        "format": "email",
+                        "required": true
+                    }],
+                    "responseMessages": [{
+                            "$ref": "#/responses/200",
+                            "description": "Employee Detail get successfully"
+                        },
+
+                        {
+                            "$ref": "#/responses/404",
+                            "description": "Employee not found.Check the Employee email"
+                        },
+
+                        {
+                            "$ref": "#/responses/400",
+                            "description": ["Employee email is must be give", "Employee email is invalid"]
+                        } ,
+                        
+                        {
+                            "$ref" : "#/response/403"
+                        }, 
+                        
+                        {
+                            "$ref" : "#/responses/500"
+                        }
+                    ]
+                },
+                {
+                    "method": ["POST", "DELETE", "PUT", "PATCH"],
+                    "responseMessages": [{
+                        "$ref": "#/responses/405"
+                    }]
+                }
+            ]
+        },
+
+        {
+            "path": "/edit",
+            "operations": [{
+                    "method": ["PUT" , "PATCH" , "POST"],
+                    "summary": "Edit Employee detail",
+                    "description": "Modify Employee Detail",
+                    "parameters": [{
+                            "name": "email",
+                            "in": "query",
+                            "required": true,
+                            "type": "string",
+                            "format": "email",
+                            "description": "Employee email address"
+                        },
+                        {
+                            "name": "modify_detail",
+                            "in": "body",
+                            "required": true,
+                            "type": "array",
+                            "description": "Employee Modify detail list",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "type": "string",
+                                        "enum": ["name", "companyName", "phone_number", "experience", "salaery", "DOB"]
+                                    },
+                                    "value": {
+                                        "type": ["string", "integer"]
+                                    }
+                                }
+                            },
+                            "minItems": 1,
+                            "maxItems": 6,
+                            "uniqueItems": true
+                        }
+                    ],
+                    "responseMessages": [{
+                            "$ref": "#/responses/200",
+                            "description": "Employee Detail update successfully"
+                        },
+
+                        {
+                            "$ref": "#/responses/404",
+                            "description": "Employee not found.Check the Employee email"
+                        },
+                        
+                        {
+                            "$ref" : "#/response/403"
+                        }, 
+                        
+
+                        {
+                            "$ref": "#/responses/400",
+                            "description": ["Employee email is must be give", "Employee email is invalid", "{modify key} is invalid key"]
+                        } , 
+                        {
+                            "$ref" : "#/responses/500"
+                        }
+                    ]
+                },
+                {
+                    "method": ["GET", "DELETE"],
+                    "responseMessages": [{
+                        "$ref": "#/responses/405"
+                    }]
+                }
+            ]
+        } , 
+         
+        {
+            "path" : "/delete" ,
+            "operations" : [{
+                "method" : ["DELETE" , "POST"],
+                "summary" : "Delete  employee in database" ,
+                "description" : "remove employee from the company" ,
+                "parameters" : [
+                    {
+                        "name" : "companyName" ,
+                        "in" : "path" ,
+                        "description" :  "Employee company name" ,
+                        "type" : "string" ,
+                        "required" : true ,
+                        "minLength" : 3,
+                        "maxLength" : 255
+                    }  ,
+                    
+                    {
+                        "name" : "email" ,
+                        "in" : "body" ,
+                        "type" : "string" ,
+                        "format" : "email" ,
+                        "required" : true ,
+                        "description" : "Employee Email id"
+                    }
+                ] , 
+                "responseMessages" : [{
+                            "$ref": "#/responses/200",
+                            "description": "Employee Detail delete successfully"
+                        },
+
+                        {
+                            "$ref": "#/responses/404",
+                            "description": "Employee not found.Check the Employee email"
+                        },
+
+                        {
+                            "$ref": "#/responses/400",
+                            "description": ["Employee email is must be give", "Employee email is invalid", "{modify key} is invalid key"]
+                        } , 
+                        
+                        {
+                            "$ref" : "#/response/403"
+                        }, 
+                        
+                        
+                        {
+                            "$ref" : "#/responses/500"
+                        }
+                    ]
+            }]
+        }
+    ],
+    
+    
+    "authorizations" : {
+       "oauth" : {
+           "type" : "oauth",
+           "scopes" :[ 
+               {
+                  "scope" : "add : employee", 
+                  "description" : "Permit to Add  new Employee"
+               } , 
+              
+              {
+                  "scope" : "delete:employee",
+                  "description" : "Permit to Delete  Employee from company"
+              }
+          ]
+       } ,
+        
+      "apiKey" : {
+          "type" : "apiKey" ,
+          "scopes" : [{
+              "scope" : "Edit : employee" ,
+              "description"  : "Edit employee detail"
+          }] ,
+         
+        "basic" : {
+            "type" : "basic" ,
+            "scopes" : [{
+                "scope" : "Get employee detail" ,
+                "description" : "Get employee detail"
+            }]
+        } 
+          
+      }
+    } ,
+    
+    "Employee": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The Name of Employee",
+                "pattern": "^[a-zA-Z]{4,255}$"
+            },
+
+            "companyName": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9-_]",
+                "description": "Employee Company Name"
+            },
+
+            "phone_number": {
+                "type": "interger",
+                "pattern": "^[6-9][0-9]{9,20}",
+                "description": "Employee Phone Number"
+            },
+
+            "experience": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 40,
+                "description": "Employee Experience"
+            },
+
+            "email": {
+                "type": "string",
+                "required": true,
+                "format": "email",
+                "description": "Employee Email Id "
+            },
+
+            "salaery": {
+                "type": "integer",
+                "minimum": 5000,
+                "description": "Employee Salaery"
+            },
+
+            "DOB": {
+                "type": "string",
+                "format": "date",
+                "description": "Employee Date Of Birth"
+            }
+
+        }
+    },
+
+
+    "responses": {
+        "200": {
+            "statusCode": 200,
+            "status": "success",
+            "detail": {
+                "$ref": "#/Employee",
+                "required": ["name", "companyName", "phone_number", "experience", "email", "salaery", "DOB"]
+            }
+        },
+
+        "400": {
+            "statusCode": 400,
+            "status": "Failed"
+        },
+        
+        "403" : {
+            "statusCode" : 403 ,
+            "status" : "Failed" ,
+            "description" : "Permission denied"
+        } ,
+        
+        "404": {
+            "statusCode": 404,
+            "status": "Failed"
+        },
+
+        "405": {
+            "statusCode": 405,
+            "status": "Failed",
+            "description": "This is {methodName} only url "
+        },
+
+        "500": {
+            "statusCode": 500,
+            "status": "Failed",
+            "description": "An unexpected error occured."
+        }
+    }
+}
